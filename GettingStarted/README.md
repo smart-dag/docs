@@ -20,7 +20,7 @@ windows:
 https://docs.docker.com/docker-for-windows/install/
 
 
-### 2 add user to docker grout
+### 2 add user to docker group
 
 ```
 sudo gpasswd -a $(whoami) docker
@@ -69,4 +69,117 @@ return
 ```
 
 ### 7 send token
+
+not in docker,in your local, install sdagwallet.js
+
+```
+npm isntall sdagwallet.js
+```
+
+make a file named mnemonic.js
+
+```
+const { default: Wallet } = require("sdagwallet.js");
+let wallet = new Wallet();
+var mnemonic = wallet.generateMnemonic();
+console.log(mnemonic);
+```
+
+run it
+```
+node mnemonic.js
+```
+
+return like this:
+```
+expose permit goat flame resist grab allow faint share bike parrot bleak
+```
+
+
+make a file named alice.js
+
+```
+const { default: Wallet } = require("sdagwallet.js");
+//import Wallet from 'sdagwallet.js';
+let wallet = new Wallet();
+
+const mnemonic = "expose permit goat flame resist grab allow faint share bike parrot bleak";
+
+wallet.configHub("ws://localhost:6615");
+wallet.loginWithMnemonic(mnemonic).then(() => {
+    var address = wallet.getAddress();
+    console.log("address",address);
+    wallet.getBalance().then((balance) => {
+        console.log("balance",balance);
+    });
+});
+
+```
+
+run it 
+```
+node alice.js
+```
+
+return like tihs, balance is zero.
+
+```
+address BBWCYWYGEYPDKVKATZVZ7MDQQHOE3WQL
+balance 0
+```
+
+make a file named scott.js and replace mnemonic to "sea absorb guilt regular retire fire invest urge tone peace enroll asthma" (from step 6) 
+
+```
+const { default: Wallet } = require("sdagwallet.js");
+//import Wallet from 'sdagwallet.js';
+let wallet = new Wallet();
+
+const mnemonic = "sea absorb guilt regular retire fire invest urge tone peace enroll asthma";
+
+wallet.configHub("ws://localhost:6615");
+wallet.loginWithMnemonic(mnemonic).then(() => {
+    var address = wallet.getAddress();
+    console.log("address",address);
+    wallet.getBalance().then((balance) => {
+        console.log("balance",balance);
+    });
+});
+
+```
+
+run it 
+
+```
+node scott.js
+```
+
+return like this
+
+```
+
+```
+
+now , make a file named scott-to-alice.js
+
+```
+
+```
+
+run it
+
+new reget balance of alice
+
+```
+node alice.js
+```
+
+balance is xxx
+
+
+send token finish
+
+
+this demo at https://github.com/smart-dag/samples.git
+
 

@@ -35,13 +35,13 @@ docker pull registry.cn-beijing.aliyuncs.com/sdag/sdag_testnet_dev:latest
 ### 4 start sdag testnet
 
 ```
-docker run --rm -d --name sdag -p 6615:6615 -p 3000:6000 registry.cn-beijing.aliyuncs.com/sdag/sdag_testnet_dev
+docker run --rm -d --name sdag -p 6615:6615 -p 8080:8080 registry.cn-beijing.aliyuncs.com/sdag/sdag_testnet_dev
 ```
 
 ### 5 visit explorer
 
 ```
-http://localhost:3000
+http://localhost:8080
 ```
 
 ![](explorer.png)
@@ -69,10 +69,12 @@ return
     "hub_url": [
         "127.0.0.1:6615"
     ],
-    "genesis_unit": "zg7GhBCgYe3enI03jdf6YmFuLm1mk3BFIGoXVfzjl1w=",
-    "mnemonic": "sea absorb guilt regular retire fire invest urge tone peace enroll asthma"
+    "genesis_unit": "lw5hoVm7YiRjJ42KNKXwa42Jazx/Ng8HN88ahMSgAhg=",
+    "mnemonic": "fade aunt crack express uncle fit valley faculty candy toddler buzz pink"
 }
 ```
+
+
 
 ### 7 send token
 
@@ -132,7 +134,7 @@ node alice.js
 return like tihs, balance is zero.
 
 ```
-address BBWCYWYGEYPDKVKATZVZ7MDQQHOE3WQL
+address CJYESZRYTA6CWNIQT43M7MDDAHWC44UL
 balance 0
 ```
 
@@ -145,11 +147,12 @@ const { default: Wallet } = require("sdagwallet.js");
 //import Wallet from 'sdagwallet.js';
 let wallet = new Wallet();
 
-const mnemonic = "sea absorb guilt regular retire fire invest urge tone peace enroll asthma";
+const mnemonic = "fade aunt crack express uncle fit valley faculty candy toddler buzz pink";
 
 wallet.configHub("ws://localhost:6615");
 wallet.loginWithMnemonic(mnemonic).then(() => {
     var address = wallet.getAddress();
+    console.log("mnemonic",mnemonic);
     console.log("address",address);
     wallet.getBalance().then((balance) => {
         console.log("balance",balance);
@@ -167,8 +170,9 @@ node scott.js
 return like this
 
 ```
-address 6CW76VRWSSGIVXGVUTWAAEFU23UOZQCT
-balance 499999903992778
+mnemonic fade aunt crack express uncle fit valley faculty candy toddler buzz pink
+address GGVK3ZZW5WU43RIURQNKJNHCUDXX6UK4
+balance 499999975997449
 ```
 
 ![](scott.png)

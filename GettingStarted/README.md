@@ -50,31 +50,19 @@ http://localhost:8080
 
 > this mnemonic has many many token 
 
-into docker
-
 ```
-docker exec -it sdag bash
+sudo docker exec -it sdag cat data/sdg/settings.json
 ```
 
-show mnemonic
+return like this:
+
+![](mnemonic.png)
+
+copy mnemonic, for step 7 use.
 
 ```
-cat data/sdg/settings.json
+fade aunt crack express uncle fit valley faculty candy toddler buzz pink
 ```
-
-return 
-
-```
-{
-    "hub_url": [
-        "127.0.0.1:6615"
-    ],
-    "genesis_unit": "lw5hoVm7YiRjJ42KNKXwa42Jazx/Ng8HN88ahMSgAhg=",
-    "mnemonic": "fade aunt crack express uncle fit valley faculty candy toddler buzz pink"
-}
-```
-
-
 
 ### 7 send token
 
@@ -83,6 +71,7 @@ not in docker,in your local Terminal, make a dir named samples and install sdagw
 ```
 mkdir samples
 cd samples
+npm init
 npm isntall sdagwallet.js
 ```
 
@@ -101,9 +90,8 @@ node mnemonic.js
 ```
 
 return like this:
-```
-expose permit goat flame resist grab allow faint share bike parrot bleak
-```
+
+![](newmnemonic.png)
 
 
 copy mnemonic and make a file named alice.js
@@ -113,7 +101,7 @@ const { default: Wallet } = require("sdagwallet.js");
 //import Wallet from 'sdagwallet.js';
 let wallet = new Wallet();
 
-const mnemonic = "expose permit goat flame resist grab allow faint share bike parrot bleak";
+const mnemonic = "april warrior alarm actress end story social palm desert twist knife future";
 
 wallet.configHub("ws://localhost:6615");
 wallet.loginWithMnemonic(mnemonic).then(() => {
@@ -133,14 +121,15 @@ node alice.js
 
 return like tihs, balance is zero.
 
-```
-address CJYESZRYTA6CWNIQT43M7MDDAHWC44UL
-balance 0
-```
-
 ![](alice.png)
 
-make a file named scott.js and replace mnemonic to "sea absorb guilt regular retire fire invest urge tone peace enroll asthma" (from step 6) 
+copy address for alice
+
+```
+HKIRYKXL65TTTBLIW3CXIYQHGPBX3YGI
+```
+
+make a file named scott.js and replace mnemonic to "fade aunt crack express uncle fit valley faculty candy toddler buzz pink" (from step 6) 
 
 ```
 const { default: Wallet } = require("sdagwallet.js");
@@ -152,7 +141,6 @@ const mnemonic = "fade aunt crack express uncle fit valley faculty candy toddler
 wallet.configHub("ws://localhost:6615");
 wallet.loginWithMnemonic(mnemonic).then(() => {
     var address = wallet.getAddress();
-    console.log("mnemonic",mnemonic);
     console.log("address",address);
     wallet.getBalance().then((balance) => {
         console.log("balance",balance);
@@ -169,41 +157,27 @@ node scott.js
 
 return like this
 
-```
-mnemonic fade aunt crack express uncle fit valley faculty candy toddler buzz pink
-address GGVK3ZZW5WU43RIURQNKJNHCUDXX6UK4
-balance 499999975997449
-```
 
 ![](scott.png)
 
 now , make a file named scott-to-alice.js
 
-send code is :
-```
-await wallet.send({ to: 'CJYESZRYTA6CWNIQT43M7MDDAHWC44UL', amount: 100, text: 'from scott to alice' });
-```
-
-full code is 
-
 ```
 const { default: Wallet } = require("sdagwallet.js");
 //import Wallet from 'sdagwallet.js';
 let wallet = new Wallet();
-
-const mnemonic = "sea absorb guilt regular retire fire invest urge tone peace enroll asthma";
-
+const mnemonic = "fade aunt crack express uncle fit valley faculty candy toddler buzz pink";
 wallet.configHub("ws://localhost:6615");
-wallet.loginWithMnemonic(mnemonic).then(() => {
-    var address = wallet.getAddress();
-    console.log("address",address);
-    wallet.getBalance().then((balance) => {
-        console.log("balance",balance);
-        console.log("send",100);
-        await wallet.send({ to: 'CJYESZRYTA6CWNIQT43M7MDDAHWC44UL', amount: 100, text: 'from scott to alice' });
-        wallet.getBalance().then((balance) => {
-            console.log("balance",balance);
-        });
+wallet.loginWithMnemonic(mnemonic).then(async () => {
+    await wallet.getBalance();
+    wallet.send({
+        to: 'HKIRYKXL65TTTBLIW3CXIYQHGPBX3YGI',
+        amount: 10,
+        text: 'from scott to alice'
+    }).then(() => {
+        console.log("ok");
+    }).catch((err) => {
+        console.log(err);
     });
 });
 
@@ -211,22 +185,23 @@ wallet.loginWithMnemonic(mnemonic).then(() => {
 
 run it
 
-```
+![](send.png)
 
-```
-
-new reget balance of alice
+get balance of alice again
 
 ```
 node alice.js
 ```
 
-balance is xxx
+![](aliceafter.png)
+
+get balance of scott again
+
+![](scottafter.png)
 
 
-send token finish
+now send token finish
 
-
-this demo at https://github.com/smart-dag/samples.git
+samples at https://github.com/smart-dag/samples.git
 
 

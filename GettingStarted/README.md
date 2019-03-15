@@ -1,3 +1,5 @@
+# How to build a cli wallet send asset base SDAG
+
 ### 1 install docker-ce
 
 ubuntu:
@@ -86,7 +88,7 @@ console.log(mnemonic);
 
 run it
 ```
-node mnemonic.js
+node mnemonic
 ```
 
 return like this:
@@ -116,7 +118,7 @@ wallet.loginWithMnemonic(mnemonic).then(() => {
 
 run it 
 ```
-node alice.js
+node alice
 ```
 
 return like tihs, balance is zero.
@@ -152,11 +154,10 @@ wallet.loginWithMnemonic(mnemonic).then(() => {
 run it 
 
 ```
-node scott.js
+node scott
 ```
 
 return like this
-
 
 ![](scott.png)
 
@@ -190,12 +191,16 @@ run it
 get balance of alice again
 
 ```
-node alice.js
+node alice
 ```
 
 ![](aliceafter.png)
 
 get balance of scott again
+
+```
+node scott
+```
 
 ![](scottafter.png)
 

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>编译 SDAG | SDAG开发者文档</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/docs/developer/assets/css/0.styles.f9ad5556.css" as="style"><link rel="preload" href="/docs/developer/assets/js/app.aaec1209.js" as="script"><link rel="preload" href="/docs/developer/assets/js/6.e4ee13d6.js" as="script"><link rel="prefetch" href="/docs/developer/assets/js/10.4e6ad16f.js"><link rel="prefetch" href="/docs/developer/assets/js/11.28002d60.js"><link rel="prefetch" href="/docs/developer/assets/js/2.57f61ee6.js"><link rel="prefetch" href="/docs/developer/assets/js/3.20b994e0.js"><link rel="prefetch" href="/docs/developer/assets/js/4.8cfd15f7.js"><link rel="prefetch" href="/docs/developer/assets/js/5.aeda092a.js"><link rel="prefetch" href="/docs/developer/assets/js/7.dd0dc1b6.js"><link rel="prefetch" href="/docs/developer/assets/js/8.cc26302b.js"><link rel="prefetch" href="/docs/developer/assets/js/9.af3506ae.js">
+    <link rel="stylesheet" href="/docs/developer/assets/css/0.styles.f9ad5556.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/developer/" class="home-link router-link-active"><!----> <span class="site-name">SDAG开发者文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/developer/" class="nav-link">首页</a></div><div class="nav-item"><a href="http://sdag.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/developer/" class="nav-link">首页</a></div><div class="nav-item"><a href="http://sdag.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/docs/developer/" class="sidebar-link">首页</a></li><li><a href="/docs/developer/docker.html" class="sidebar-link">Docker</a></li><li><a href="/docs/developer/api.html" class="sidebar-link">SDAG API</a></li><li><a href="/docs/developer/sdk.html" class="sidebar-link">SDAG SDK</a></li></ul> </div> <div class="page"> <div class="content"><h3 id="编译-sdag"><a href="#编译-sdag" aria-hidden="true" class="header-anchor">#</a> 编译 SDAG</h3> <p>首先你必须安装了Rust，如果没有的话，需要一条命令进行安装：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>$ curl -sSf https://static.rust-lang.org/rustup.sh | sh
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>接下来是克隆仓库</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>https://github.com/smart-dag/sdag.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>然后进入sdag 目录，使用命令cargo build即可。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sdag$ cargo build
+Finished dev [unoptimized + debuginfo] target(s) in 0.47s
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>编译witness：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>witness$ cargo build
+Compiling may_signal v0.1.0 (https://github.com/Xudong-Huang/may_signal.git#65f8feb2)
+Compiling sdag_witness v0.1.0 (/home/cr4fun/sdag/sdag/witness)               
+Finished dev [unoptimized + debuginfo] target(s) in 9.52s   
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>编译hub：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>hub$ cargo build 
+Compiling sdag v0.2.0 (/home/cr4fun/sdag/sdag)                               
+Compiling sdag_hub v0.1.0 (/home/cr4fun/sdag/sdag/hub)              
+Finished dev [unoptimized + debuginfo] target(s) in 22.16s
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>编译sdg：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sdg$ cargo build
+Finished dev [unoptimized + debuginfo] target(s) in 0.20s
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>之后，进入你就可以使用sdg了。</p> <h3 id="如何使用sdg"><a href="#如何使用sdg" aria-hidden="true" class="header-anchor">#</a> 如何使用sdg</h3> <blockquote><p>sdg　是命令行的钱包。</p></blockquote> <ul><li>初始化</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>/sdg$ cargo run init
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s                   
+     Running `/home/cr4fun/sdag/sdag/target/debug/sdg init`
+settings:
+{
+  &quot;hub_url&quot;: [
+    &quot;127.0.0.1:6615&quot;
+  ],
+  &quot;mnemonic&quot;: &quot;enemy federal fashion danger dove tragic detail orange wood debate barely brick&quot;
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><ul><li>查看余额</li></ul> <p>因为本地没有启动hub，所以我们用内网的hub（以后提供测试网的hub）</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>nano settings.json
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>把hub改为： 10.168.3.131:6635</p> <p>再运行 cargo run info</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sdg$ cargo run info
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s                   
+     Running `/home/cr4fun/sdag/sdag/target/debug/sdg info`
+
+current wallet info:
+
+device_address: 0TJLSRFX5CAS7HNS545NMN5YOJ2OACW5C
+wallet_public_key: xpub6D6kq6EV7foUEbsPkTMqQWCfbwR39zvoctYdGDa84wQiFc5PrJ9GJ6Mj27vaMUh79fcJUsrFeCFY7tAdpz6mJ1Pdj5NxGnnt3GX1qVkeo1X
+└──wallet_id(0): Er7UdVYDYh4bBPKKWpJoWvWd2jYhOSmWvY3feXcXVlo=
+   └──address(0/0): LP3VGPUTQV3O76F7K3YCABCL6G7FIUBN
+      ├── path: /m/44'/0'/0'/0/0
+      ├── pubkey: A3gO3JmLg+bMMIDMTuE8gZFlz5dDBSHm6R6DPJG2VaN0
+      └── balance: 0.000000
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>这样就看到了余额。也可以在后面加上 -j 以查看json格式：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sdg$ cargo run info -j
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s                   
+     Running `/home/cr4fun/sdag/sdag/target/debug/sdg info -j`
+{
+  &quot;device_address&quot;: &quot;0TJLSRFX5CAS7HNS545NMN5YOJ2OACW5C&quot;,
+  &quot;wallet_public_key&quot;: &quot;xpub6D6kq6EV7foUEbsPkTMqQWCfbwR39zvoctYdGDa84wQiFc5PrJ9GJ6Mj27vaMUh79fcJUsrFeCFY7tAdpz6mJ1Pdj5NxGnnt3GX1qVkeo1X&quot;,
+  &quot;wallet_id&quot;: &quot;Er7UdVYDYh4bBPKKWpJoWvWd2jYhOSmWvY3feXcXVlo=&quot;,
+  &quot;address&quot;: &quot;LP3VGPUTQV3O76F7K3YCABCL6G7FIUBN&quot;,
+  &quot;path&quot;: &quot;/m/44'/0'/0'/0/0&quot;,
+  &quot;pubkey&quot;: &quot;A3gO3JmLg+bMMIDMTuE8gZFlz5dDBSHm6R6DPJG2VaN0&quot;,
+  &quot;balance&quot;: &quot;0&quot;
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ul><li>转账</li></ul> <blockquote><p>7E5V7WKXWC4ZELYSRYSA3UO6K53SELYC 是对方地址 ；
+10 是转账金额，单位是sdg；
+hello 是上链信息。</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>sdg$ cargo run send --pay 7E5V7WKXWC4ZELYSRYSA3UO6K53SELYC 10 --text hello
+Finished dev [unoptimized + debuginfo] target(s) in 0.67s                                                             
+Running `/home/cr4fun/sdag/sdag/target/debug/sdg send --pay 7E5V7WKXWC4ZELYSRYSA3UO6K53SELYC 10 --text hello`
+FROM  : 5YJKYU5NFWEUJAO4M2WNR4O3W5Z62ZYO
+TO    : 
+      address : 7E5V7WKXWC4ZELYSRYSA3UO6K53SELYC, amount : 10
+UNIT  : YiNYIEe11O/3FegyzP4Aixl+6HxsjscgDKVKnc8q7Ro=
+TEXT  : hello
+DATE  : 2019-01-17 18:10:12.277
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><ul><li>查看网络信息</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code> cargo run net
+    Finished dev [unoptimized + debuginfo] target(s) in 0.18s                   
+     Running `/home/cr4fun/sdag/sdag/target/debug/sdg net`
+{
+  &quot;in_bounds&quot;: [
+    {
+      &quot;peer_id&quot;: &quot;tYDkaQRSPsx4GGwE86x2qWr+pse/aLaPSPn7GqSh&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57702&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;s6Q0m/RjYJD8PAr8wCwQAe7zfHQdDkgbu2+7KhiI&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57404&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;xNz7cZRaxrmaQZpPOkpur2poFRW97t9j0s9TC1CA&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57400&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;w4ho7yW4nHUQsxV62osDFRiNuafvIeNOK5yU2i5f&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57696&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;Qi9Jc95An4er4oitZTpTmKTscKi0hXjVUzCWUPht&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57402&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;l02NkUJjQhFWd6kQST6Mo0Mf419AEtd3PmgfoaUJ&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57426&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;2ergjPN0BbiYPseZEleR95imzpw9exVyKsjAGtPd&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57424&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;TaPzS52Xbyscl4KTHeNLfZXkZmmrZwgQTQaoVRTW&quot;,
+      &quot;peer_addr&quot;: &quot;10.168.1.111:47038&quot;,
+      &quot;is_source&quot;: false,
+      &quot;is_subscribed&quot;: false
+    },
+    {
+      &quot;peer_id&quot;: &quot;H4wccpp53ua6sAQnrjUaXgsXp1Ys0Su5c01uXDmL&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57700&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;eMkV1nWvqZfHRTGTTryKKOS2bVZWP6/Y+7wk/Cl/&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57428&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;BEjs/sitvo/mVNAV26uHVsO3vELp8YQ/bZEAEu1R&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57698&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;Kt1G0OYb7x9bUCt4vmy52mcy++xSeGTBkRwyze2p&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57694&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;P1joFRHobS0KXG2762bKIFQbI+luGyf84gxlFZeB&quot;,
+      &quot;peer_addr&quot;: &quot;10.168.1.224:53455&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    },
+    {
+      &quot;peer_id&quot;: &quot;1qOoCFIEvTFrphXYURV0WT2ZdlsytMgZLTi/zyf0&quot;,
+      &quot;peer_addr&quot;: &quot;172.17.0.2:57430&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    }
+  ],
+  &quot;out_bounds&quot;: [
+    {
+      &quot;peer_id&quot;: &quot;JUwatzxcyq9fJso9UK82Em7193lmnqb+dVsoPKj2&quot;,
+      &quot;peer_addr&quot;: &quot;127.0.0.1:6615&quot;,
+      &quot;is_source&quot;: true,
+      &quot;is_subscribed&quot;: true
+    }
+  ]
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br></div></div><p>如果你不想编译，可以直接使用docker进行体验。教程在https://github.com/smart-dag/docs/blob/master/GettingStarted/README_CN.md</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/docs/developer/assets/js/app.aaec1209.js" defer></script><script src="/docs/developer/assets/js/6.e4ee13d6.js" defer></script>
+  </body>
+</html>

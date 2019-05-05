@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>本地搭建SDAG区块链并完成转账 | SDAG开发者文档</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/docs/developer/assets/css/0.styles.f9ad5556.css" as="style"><link rel="preload" href="/docs/developer/assets/js/app.aaec1209.js" as="script"><link rel="preload" href="/docs/developer/assets/js/3.20b994e0.js" as="script"><link rel="prefetch" href="/docs/developer/assets/js/10.4e6ad16f.js"><link rel="prefetch" href="/docs/developer/assets/js/11.28002d60.js"><link rel="prefetch" href="/docs/developer/assets/js/2.57f61ee6.js"><link rel="prefetch" href="/docs/developer/assets/js/4.8cfd15f7.js"><link rel="prefetch" href="/docs/developer/assets/js/5.aeda092a.js"><link rel="prefetch" href="/docs/developer/assets/js/6.e4ee13d6.js"><link rel="prefetch" href="/docs/developer/assets/js/7.dd0dc1b6.js"><link rel="prefetch" href="/docs/developer/assets/js/8.cc26302b.js"><link rel="prefetch" href="/docs/developer/assets/js/9.af3506ae.js">
+    <link rel="stylesheet" href="/docs/developer/assets/css/0.styles.f9ad5556.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/developer/" class="home-link router-link-active"><!----> <span class="site-name">SDAG开发者文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/developer/" class="nav-link">首页</a></div><div class="nav-item"><a href="http://sdag.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/developer/" class="nav-link">首页</a></div><div class="nav-item"><a href="http://sdag.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/docs/developer/" class="sidebar-link">首页</a></li><li><a href="/docs/developer/docker.html" class="sidebar-link">Docker</a></li><li><a href="/docs/developer/api.html" class="sidebar-link">SDAG API</a></li><li><a href="/docs/developer/sdk.html" class="sidebar-link">SDAG SDK</a></li></ul> </div> <div class="page"> <div class="content"><h1 id="本地搭建sdag区块链并完成转账"><a href="#本地搭建sdag区块链并完成转账" aria-hidden="true" class="header-anchor">#</a> 本地搭建SDAG区块链并完成转账</h1> <blockquote><p>按照本文档的步骤执行，你可以在本地搭建一个SDAG区块链，并使用SDAG的jssdk构建一个命令行钱包来查询和转账。</p></blockquote> <h3 id="_1-安装docker社区版"><a href="#_1-安装docker社区版" aria-hidden="true" class="header-anchor">#</a> 1 安装docker社区版</h3> <p>ubuntu用户请参考如下安装方式:</p> <p>https://docs.docker.com/install/linux/docker-ce/ubuntu/</p> <p>centos用户请参考如下安装方式:</p> <p>https://docs.docker.com/install/linux/docker-ce/centos/</p> <p>fedora用户请参考如下安装方式:
+https://docs.docker.com/install/linux/docker-ce/fedora/</p> <p>Mac用户请参考如下安装方式:</p> <p>https://docs.docker.com/docker-for-mac/install/</p> <p>windows用户请参考如下安装方式:</p> <p>https://docs.docker.com/docker-for-windows/install/</p> <h3 id="_2-把当前用户添加到docker用户组"><a href="#_2-把当前用户添加到docker用户组" aria-hidden="true" class="header-anchor">#</a> 2 把当前用户添加到docker用户组</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>sudo gpasswd -a $(whoami) docker
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_3-获得sdag区块链镜像"><a href="#_3-获得sdag区块链镜像" aria-hidden="true" class="header-anchor">#</a> 3 获得SDAG区块链镜像</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>docker pull registry.cn-beijing.aliyuncs.com/sdag/sdag_testnet_dev:latest
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_4-启动sdag区块链"><a href="#_4-启动sdag区块链" aria-hidden="true" class="header-anchor">#</a> 4 启动SDAG区块链</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>docker run --rm -d --name sdag -p 6615:6615 -p 8080:8080 registry.cn-beijing.aliyuncs.com/sdag/sdag_testnet_dev
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_5-打开区块链浏览器"><a href="#_5-打开区块链浏览器" aria-hidden="true" class="header-anchor">#</a> 5 打开区块链浏览器</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>http://localhost:8080
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><img src="explorer.png" alt></p> <h3 id="_6-获得创始后有数字资产的助记词"><a href="#_6-获得创始后有数字资产的助记词" aria-hidden="true" class="header-anchor">#</a> 6 获得创始后有数字资产的助记词</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>sudo docker exec -it sdag cat data/sdg/settings.json
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回的结果类似:</p> <p><img src="mnemonic.png" alt></p> <p>拷贝下助记词，供第7步使用.</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>fade aunt crack express uncle fit valley faculty candy toddler buzz pink
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_7-发送数字资产"><a href="#_7-发送数字资产" aria-hidden="true" class="header-anchor">#</a> 7 发送数字资产</h3> <p>在本地计算机（非docker里），新建一个名为samples的文件夹。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>mkdir samples
+cd samples
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>初始化npm，并安装SDAG的jssdk：sdagwallet.js</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>npm init
+npm isntall sdagwallet.js
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>新建一个名为mnemonic.js的文件，输入以下内容：</p> <blockquote><p>该文件使用mnemonic.js生成随机助记词</p></blockquote> <div class="language- line-numbers-mode"><pre class="language-text"><code>const { default: Wallet } = require(&quot;sdagwallet.js&quot;);
+let wallet = new Wallet();
+var mnemonic = wallet.generateMnemonic();
+console.log(mnemonic);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>执行它：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node mnemonic.js
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>得到类似下图的结果:</p> <p><img src="newmnemonic.png" alt></p> <p>拷贝助记词，并建立一个名为 alice.js 的文件，在 mnemonic = &quot;&quot; 中填入助记词，内容如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const { default: Wallet } = require(&quot;sdagwallet.js&quot;);
+//import Wallet from 'sdagwallet.js';
+let wallet = new Wallet();
+
+const mnemonic = &quot;april warrior alarm actress end story social palm desert twist knife future&quot;;
+
+wallet.configHub(&quot;ws://localhost:6615&quot;);
+wallet.loginWithMnemonic(mnemonic).then(() =&gt; {
+    var address = wallet.getAddress();
+    console.log(&quot;address&quot;,address);
+    wallet.getBalance().then((balance) =&gt; {
+        console.log(&quot;balance&quot;,balance);
+    });
+});
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>执行它：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node alice.js
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回的结果如下，能看到alice的地址，及余额。</p> <p><img src="alice.png" alt></p> <p>拷贝alice的地址，留作scott给alice转账时使用。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>HKIRYKXL65TTTBLIW3CXIYQHGPBX3YGI
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>新建一个名为 scott.js 的文件，并且把助记词配置为 &quot;fade aunt crack express uncle fit valley faculty candy toddler buzz pink&quot; (在第6步时从docker里得到的)</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const { default: Wallet } = require(&quot;sdagwallet.js&quot;);
+//import Wallet from 'sdagwallet.js';
+let wallet = new Wallet();
+
+const mnemonic = &quot;fade aunt crack express uncle fit valley faculty candy toddler buzz pink&quot;;
+
+wallet.configHub(&quot;ws://localhost:6615&quot;);
+wallet.loginWithMnemonic(mnemonic).then(() =&gt; {
+    var address = wallet.getAddress();
+    console.log(&quot;address&quot;,address);
+    wallet.getBalance().then((balance) =&gt; {
+        console.log(&quot;balance&quot;,balance);
+    });
+});
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>执行它</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node scott.js
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回的结果如下：</p> <p><img src="scott.png" alt></p> <p>现在，新建一个名为 scott-to-alice.js 的文件，内容如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const { default: Wallet } = require(&quot;sdagwallet.js&quot;);
+//import Wallet from 'sdagwallet.js';
+let wallet = new Wallet();
+const mnemonic = &quot;fade aunt crack express uncle fit valley faculty candy toddler buzz pink&quot;;
+wallet.configHub(&quot;ws://localhost:6615&quot;);
+wallet.loginWithMnemonic(mnemonic).then(async () =&gt; {
+    await wallet.getBalance();
+    wallet.send({
+        to: 'HKIRYKXL65TTTBLIW3CXIYQHGPBX3YGI',
+        amount: 10,
+        text: 'from scott to alice'
+    }).then(() =&gt; {
+        console.log(&quot;ok&quot;);
+    }).catch((err) =&gt; {
+        console.log(err);
+    });
+});
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>执行它</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node scott-to-alice
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回的结果如下：</p> <p><img src="send.png" alt></p> <p>这说明已经完成转账，接下来，重新获得 alice 的余额：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node alice
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回结果如下：</p> <p><img src="aliceafter.png" alt></p> <p>重新获得 scott 的余额：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>node scott
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>返回结果如下：</p> <p><img src="scottafter.png" alt></p> <p>转账结束了，上述源码位于： https://github.com/smart-dag/samples.git</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/docs/developer/assets/js/app.aaec1209.js" defer></script><script src="/docs/developer/assets/js/3.20b994e0.js" defer></script>
+  </body>
+</html>

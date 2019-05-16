@@ -25,6 +25,10 @@ windows:
 
 https://docs.docker.com/docker-for-windows/install/
 
+国内用户可以直接到 [http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/](http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/) 下载相应的版本。但需要注意的是，windos必须开启了虚拟化（需要CPU支持），否则无法使用。
+
+注：windows10的ubuntu子系统，目前还无法使用docker。
+
 
 ## 把当前用户添加至 Docker 用户组
 
